@@ -1,12 +1,13 @@
 .grid-square{
-    border-style:solid;
-    border-color: black;
-    width: 50px;
-    height: 50px;
-    background-color: blue;
+    border-style:dotted;
+    border-color: rgb(204, 212, 221);
+    border-width: 0px;
+    background-color: rgb(200, 235, 198);
+    margin: 0px;
+    padding: 0px;
 }
 .grid-square:hover{
-    background-color: white;
+    background-color: blue;
 }
 .grid-row{
     display: flex;
@@ -14,4 +15,11 @@
 #container{
     display: flex;
     flex-direction: column;
+    border-style:dotted;
+    border-color: rgb(204, 212, 221);
+    margin: 0px;
+    padding: 0px;
+    border-radius: 25px;
+    height: 960px;
+    width: 960px;
 }
