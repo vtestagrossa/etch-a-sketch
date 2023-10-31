@@ -1,15 +1,21 @@
+const outerContainer = document.getElementById('container-border');
 const container = document.getElementById('container');
+
+
 const containerSize = 960;
 let clicked = false;
 let gridSizeX = 50;
 let gridSizeY = 50;
+
+//Allows for selection of colors.
 let RGB = "FF0000;"
 let cellColor = "background-color: #" + RGB;
+
+//Allows for selection of grid size
 const cellStyle = "width: " + (containerSize / gridSizeX) + "px;" + " height: " + (containerSize / gridSizeY) + "px;";
 
-//Allows dragging.
-document.addEventListener('mousedown', () => {clicked = true;});
-document.addEventListener('mouseup', () => {clicked = false});
+//Toggles drawing mode
+document.addEventListener('mousedown', () => {clicked = !clicked;});
 
 function makeGrid(sizeX, sizeY){
     //Loop through the rows
@@ -23,16 +29,9 @@ function makeGrid(sizeX, sizeY){
             let gridCell = document.createElement('div');
             gridCell.classList.add('grid-square');
             gridCell.setAttribute('style', cellStyle);
-            gridCell.addEventListener('mousedown', () => {
-                clicked = true;
-                gridCell.setAttribute("style", cellStyle + cellColor)
-            });
-            gridCell.addEventListener('mouseup', () => {
-                clicked = false;
-            });
             gridCell.addEventListener('mouseenter', () => {
                 //Checks for mousedown before filling the tile
-                if (clicked){
+                if (clicked === true){
                     gridCell.setAttribute("style", cellStyle + cellColor)
                 }
             });
