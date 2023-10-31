@@ -23,8 +23,9 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-style:dotted;
-    border-color: rgb(204, 212, 221);
+    border-style:inset;
+    border-width: 7px;
+    border-color: rgb(84, 11, 133);
     margin: 0px;
     padding: 0px;
     border-radius: 25px;
@@ -42,7 +43,7 @@ body{
     padding: 20px;
     height: 700px;
     width: 900px;
-    border-radius: 30px;
+    border-radius: 75px;
     z-index: 3;
     overflow: hidden;
 }
