@@ -2,7 +2,7 @@ const outerContainer = document.getElementById('container-border');
 const container = document.getElementById('container');
 
 
-const containerSize = 960;
+const containerSize = 600;
 let clicked = false;
 let gridSizeX = 50;
 let gridSizeY = 50;
