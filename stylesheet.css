@@ -8,9 +8,11 @@ body{
     margin: 0px;
     padding: 0px;
     z-index: 1;
+    -webkit-transition: background-color 0.5s;
 }
 .grid-square:hover{
-    background-color: rgb(39, 116, 35);
+    background-color: rgb(116, 95, 175);
+    -webkit-transition: background-color 0s;
 }
 .grid-row{
     display: flex;
@@ -22,9 +24,16 @@ body{
     color: rgb(231, 231, 231);
     font-variant-caps: small-caps;
     font-weight: bolder;
+    font-size: large;
 }
 .size-slider{
     width: 45%;
+}
+.title-text{
+    color: rgb(231, 231, 231);
+    font-variant-caps: small-caps;
+    font-weight: bolder;
+    font-size: 2.2em;
 }
 #container{
     display: flex;
@@ -59,8 +68,10 @@ body{
 #border-top{
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    padding: 50px;
+    padding: 0px;
 }
 #border-center{
     display: flex;

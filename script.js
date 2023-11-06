@@ -1,9 +1,15 @@
 // Main divs to append/remove children to/from
 const outerContainer = document.getElementById('container-border');
 const container = document.getElementById('container');
+const borderTop = document.getElementById('border-top');
 const borderBottom = document.getElementById('border-bottom');
 const borderLeft = document.getElementById('cb-left');
 const borderRight = document.getElementById('cb-right');
+
+let borderTitle = document.createElement('p');
+borderTitle.textContent = "Etch-a-Sketch";
+borderTitle.classList.add('title-text');
+borderTop.appendChild(borderTitle);
 
 // Slider elements
 const sizeSlider = document.createElement('input');
@@ -27,9 +33,9 @@ let gridSizeX = 50;
 let gridSizeY = 50;
 
 // sizeLabel text and onchange event code
-sizeLabel.textContent = "Size: " + gridSizeX;
+sizeLabel.textContent = "Grid Size: " + gridSizeX;
 sizeSlider.addEventListener('change', () => { 
-        sizeLabel.textContent = "Size: " + sizeSlider.value;
+        sizeLabel.textContent = "Grid Size: " + sizeSlider.value;
         gridSizeX = sizeSlider.value;
         gridsizeY = sizeSlider.value;
         makeGrid(gridSizeX, gridsizeY);
