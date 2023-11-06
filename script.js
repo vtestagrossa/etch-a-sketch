@@ -1,23 +1,52 @@
+// Main divs to append/remove children to/from
 const outerContainer = document.getElementById('container-border');
 const container = document.getElementById('container');
+const borderBottom = document.getElementById('border-bottom');
+const borderLeft = document.getElementById('cb-left');
+const borderRight = document.getElementById('cb-right');
 
+// Slider elements
+const sizeSlider = document.createElement('input');
+const sizeLabel = document.createElement('p');
+sizeLabel.classList.add('border-label');
+// Set Slider attributes and append to the bottom border
+sizeSlider.setAttribute('id', 'sizeSlider');
+sizeSlider.setAttribute('type', 'range');
+sizeSlider.setAttribute('min', '16');
+sizeSlider.setAttribute('max', '100');
+sizeSlider.setAttribute('value', '25');
+sizeSlider.classList.add('size-slider');
+borderBottom.appendChild(document.createElement('br'));
+borderBottom.appendChild(sizeSlider);
+borderBottom.appendChild(sizeLabel);
 
+// Sizing information
 const containerSize = 600;
 let clicked = false;
 let gridSizeX = 50;
 let gridSizeY = 50;
 
+// sizeLabel text and onchange event code
+sizeLabel.textContent = "Size: " + gridSizeX;
+sizeSlider.addEventListener('change', () => { 
+        sizeLabel.textContent = "Size: " + sizeSlider.value;
+        gridSizeX = sizeSlider.value;
+        gridsizeY = sizeSlider.value;
+        makeGrid(gridSizeX, gridsizeY);
+    });
+
 //Allows for selection of colors.
 let RGB = "FF0000;"
 let cellColor = "background-color: #" + RGB;
 
-//Allows for selection of grid size
-const cellStyle = "width: " + (containerSize / gridSizeX) + "px;" + " height: " + (containerSize / gridSizeY) + "px;";
 
 //Toggles drawing mode
 document.addEventListener('mousedown', () => {clicked = !clicked;});
 
 function makeGrid(sizeX, sizeY){
+    removeOldGrid();
+    //Allows for selection of grid size
+    let cellStyle = "width: " + (containerSize / sizeX) + "px;" + " height: " + (containerSize / sizeY) + "px;";
     //Loop through the rows
     for (let y = 0; y < sizeY; y++){
         //create the div for the row
@@ -38,5 +67,10 @@ function makeGrid(sizeX, sizeY){
             gridRow.appendChild(gridCell);
         }
     }
+}
+function removeOldGrid(){
+    document.querySelectorAll('.grid-row').forEach(function(row){
+        row.parentNode.removeChild(row);
+    });
 }
 makeGrid(gridSizeX, gridSizeY);
