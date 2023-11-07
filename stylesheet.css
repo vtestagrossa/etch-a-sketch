@@ -51,6 +51,14 @@ body{
 .active{
     border-style:inset;
 }
+.color-picker{
+    border-style: ridge;
+    border-width: 3px;
+    border-radius: 8px;
+}
+.color-picker:active{
+    border-style:groove;
+}
 #container{
     display: flex;
     flex-direction: column;

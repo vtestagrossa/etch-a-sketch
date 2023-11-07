@@ -8,17 +8,29 @@ const borderBC = document.getElementById('bc-border');
 const borderBL = document.getElementById('bl-border');
 const borderBR = document.getElementById('br-border');
 
+// flags
 let rainbowTgl = false;
+let clicked = false;
 
 // controls
 const clearBtn = document.createElement('button');
 const rainbowBtn = document.createElement('button');
 const drawBtn = document.createElement('button');
+const colorPicker = document.createElement('input');
 
+// colorPicker attributes
+colorPicker.classList.add('color-picker');
+colorPicker.setAttribute('id', 'color-picker');
+colorPicker.setAttribute('type', 'color');
+colorPicker.setAttribute('value', '#000000');
+borderBL.appendChild(colorPicker);
+
+// drawBtn attributes
 drawBtn.classList.add('border-button');
 drawBtn.textContent= "Draw";
 borderBL.appendChild(drawBtn);
 
+// rainbowBtn attributes
 rainbowBtn.classList.add('border-button');
 rainbowBtn.textContent = "Rainbow";
 borderBL.appendChild(rainbowBtn);
@@ -46,13 +58,11 @@ sizeSlider.setAttribute('min', '16');
 sizeSlider.setAttribute('max', '100');
 sizeSlider.setAttribute('value', '25');
 sizeSlider.classList.add('size-slider');
-
 borderBC.appendChild(sizeSlider);
 borderBC.appendChild(sizeLabel);
 
 // Sizing information
 const containerSize = 600;
-let clicked = false;
 let gridSizeX = 50;
 let gridSizeY = 50;
 
@@ -63,14 +73,12 @@ sizeSlider.addEventListener('change', () => {
     sizeLabel.textContent = "Grid Size: " + sizeSlider.value;
     gridSizeX = sizeSlider.value;
     gridSizeY = sizeSlider.value;
-    clicked = false;
     makeGrid(gridSizeX, gridSizeY);
     });
 // clearBtn event listener
 clearBtn.addEventListener('click', () => {
     gridSizeX = sizeSlider.value;
     gridSizeY = sizeSlider.value;
-    clicked = false;
     makeGrid(gridSizeX, gridSizeY);
 })
 rainbowBtn.addEventListener('click', () => {
@@ -108,7 +116,10 @@ function makeGrid(sizeX, sizeY){
                     if (rainbowTgl === true){
                         cellColor = randomizeColor();
                     }
-                    gridCell.setAttribute("style", cellStyle + cellColor)
+                    else {
+                        cellColor = "background-color: " + document.getElementById('color-picker').value + ";";
+                    }
+                    gridCell.setAttribute("style", cellStyle + cellColor);
                 }
             });
             gridRow.appendChild(gridCell);
@@ -125,5 +136,8 @@ function randomizeColor(){
     let G = Math.floor(Math.random() * 256);
     let B = Math.floor(Math.random() * 256);
     return "background-color: rgb(" + R + ", " + G + ", " + B + ");";
+}
+function cellEnter(){
+    
 }
 makeGrid(gridSizeX, gridSizeY);
