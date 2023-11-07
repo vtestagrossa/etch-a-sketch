@@ -39,6 +39,7 @@ body{
     border-radius: 10px;
     background-color: rgb(135, 95, 175);
     border-color: rgb(84, 11, 133);
+    border-width: 3px;
     font-variant-caps: small-caps;
     font-weight: bolder;
     color: rgb(231, 231, 231);
