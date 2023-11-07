@@ -50,6 +50,12 @@ body{
     border-radius: 8px;
 }
 .active{
+    background-color: rgb(165, 95, 175);
+    border-style:inset;
+}
+.active:hover{
+    background-color: rgb(165, 95, 175);
+    color: rgb(210, 210, 210);
     border-style:inset;
 }
 .color-picker{
