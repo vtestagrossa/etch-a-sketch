@@ -48,6 +48,9 @@ body{
     background-color: rgb(145, 95, 175);
     border-radius: 8px;
 }
+.active{
+    border-style:inset;
+}
 #container{
     display: flex;
     flex-direction: column;

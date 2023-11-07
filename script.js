@@ -8,8 +8,20 @@ const borderBC = document.getElementById('bc-border');
 const borderBL = document.getElementById('bl-border');
 const borderBR = document.getElementById('br-border');
 
+let rainbowTgl = false;
+
 // controls
 const clearBtn = document.createElement('button');
+const rainbowBtn = document.createElement('button');
+const drawBtn = document.createElement('button');
+
+drawBtn.classList.add('border-button');
+drawBtn.textContent= "Draw";
+borderBL.appendChild(drawBtn);
+
+rainbowBtn.classList.add('border-button');
+rainbowBtn.textContent = "Rainbow";
+borderBL.appendChild(rainbowBtn);
 
 // clearBtn attributes
 clearBtn.classList.add('border-button');
@@ -50,26 +62,30 @@ sizeLabel.textContent = "Grid Size: " + gridSizeX;
 sizeSlider.addEventListener('change', () => { 
     sizeLabel.textContent = "Grid Size: " + sizeSlider.value;
     gridSizeX = sizeSlider.value;
-    gridsizeY = sizeSlider.value;
+    gridSizeY = sizeSlider.value;
     clicked = false;
-    makeGrid(gridSizeX, gridsizeY);
+    makeGrid(gridSizeX, gridSizeY);
     });
 // clearBtn event listener
 clearBtn.addEventListener('click', () => {
     gridSizeX = sizeSlider.value;
-    gridsizeY = sizeSlider.value;
+    gridSizeY = sizeSlider.value;
     clicked = false;
-    makeGrid(gridSizeX, gridsizeY);
+    makeGrid(gridSizeX, gridSizeY);
 })
+rainbowBtn.addEventListener('click', () => {
+    rainbowBtn.classList.toggle('active');
+    rainbowTgl = !rainbowTgl;
+});
 //Toggles drawing mode
-document.addEventListener('mousedown', () => {clicked = !clicked;});
+drawBtn.addEventListener('click', () => {
+    drawBtn.classList.toggle('active');
+    clicked = !clicked;
+})
 
 
 //Allows for selection of colors.
-let RGB = "FF0000;"
-let cellColor = "background-color: #" + RGB;
-
-
+let cellColor = "background-color: rgb(0, 0, 0);";
 
 function makeGrid(sizeX, sizeY){
     removeOldGrid();
@@ -89,6 +105,9 @@ function makeGrid(sizeX, sizeY){
             gridCell.addEventListener('mouseenter', () => {
                 //Checks for mousedown before filling the tile
                 if (clicked === true){
+                    if (rainbowTgl === true){
+                        cellColor = randomizeColor();
+                    }
                     gridCell.setAttribute("style", cellStyle + cellColor)
                 }
             });
@@ -100,5 +119,11 @@ function removeOldGrid(){
     document.querySelectorAll('.grid-row').forEach(function(row){
         row.parentNode.removeChild(row);
     });
+}
+function randomizeColor(){
+    let R = Math.floor(Math.random() * 256);
+    let G = Math.floor(Math.random() * 256);
+    let B = Math.floor(Math.random() * 256);
+    return "background-color: rgb(" + R + ", " + G + ", " + B + ");";
 }
 makeGrid(gridSizeX, gridSizeY);
